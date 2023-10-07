@@ -16,4 +16,10 @@ M.get_codelldb = function ()
   return codelldb_path, liblldb_path
 end
 
+M.get_debug_server_js = function ()
+  local mason_registry = require("mason-registry")
+  local js_debug_adapter = mason_registry.get_package("js-debug-adapter")
+  return js_debug_adapter:get_install_path() .. "/js-debug/src/dapDebugServer.js"
+end
+
 return M

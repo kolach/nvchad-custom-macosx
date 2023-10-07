@@ -7,8 +7,12 @@ local plugins = {
         "rust-analyzer",
         "gopls",
         "gofumpt",
-        "goimports_reviser",
+        "goimports-reviser",
         "golines",
+        "eslint-lsp",
+        "js-debug-adapter",
+        "typescript-language-server",
+        "prettier",
       }
 }
   },
@@ -40,8 +44,17 @@ local plugins = {
   },
   {
     "mfussenegger/nvim-dap",
-    init = function ()
+    config = function ()
+      require("custom.configs.dap")
       require("core.utils").load_mappings("dap")
+    end
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    event = "VeryLazy",
+    dependencies = "mfussenegger/nvim-dap",
+    config = function()
+      require("custom.configs.dap-ui")
     end
   },
   -- To manage Rust crates
@@ -92,6 +105,20 @@ local plugins = {
     end,
     build = function ()
       vim.cmd [[silent! GoInstallDeps]]
+    end
+  },
+  {
+    "mfussenegger/nvim-lint",
+    event = "VeryLazy",
+    config = function()
+      require "custom.configs.lint"
+    end
+  },
+  {
+    "mhartington/formatter.nvim",
+    event = "VeryLazy",
+    opts = function()
+      return require "custom.configs.formatter"
     end
   },
 }
