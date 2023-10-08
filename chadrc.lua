@@ -7,8 +7,13 @@ M.ui = {
     'catppuccin',
     'ayu_light',
   },
+  tabufline = {
+    lazyload = false,
+  }
 }
 M.plugins = 'custom.plugins'
 M.mappings = require "custom.mappings"
+
+vim.opt.relativenumber = true
 
 return M
