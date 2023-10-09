@@ -37,10 +37,48 @@ M.crates = {
   n = {
     ["<leader>rcu"] = {
       function ()
-        require("crates").upgrade_all_cragtes()
+        require("crates").upgrade_all_crates()
       end,
       "Update crates"
-    }
+    },
+    ["<leader>rch"] = {
+      function ()
+        require("crates").open_homepage()
+      end,
+      "Open home page"
+    },
+    ["<leader>rcr"] = {
+      function ()
+        require("crates").open_repository()
+      end,
+      "Open repository"
+    },
+    ["<leader>rcD"] = {
+      function ()
+        require("crates").open_documentation()
+      end,
+      "Open documentation"
+    },
+    ["<leader>rcv"] = {
+      function ()
+        require("crates").show_versions_popup()
+        require("crates").focus_popup()
+      end,
+      "Show versions"
+    },
+    ["<leader>rcf"] = {
+      function ()
+        require("crates").show_features_popup()
+        require("crates").focus_popup()
+      end,
+      "Show features"
+    },
+    ["<leader>rcd"] = {
+      function ()
+        require("crates").show_dependencies_popup()
+      end,
+      "Show dependencies"
+    },
   }
 }
 

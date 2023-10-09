@@ -62,8 +62,11 @@ local plugins = {
   -- See key mapping at custom/mapping.lua
   {
     "saecki/crates.nvim",
-    dependencies = "hrsh7th/nvim-cmp",
+    dependencies = {"hrsh7th/nvim-cmp", "nvim-lua/plenary.nvim" },
     ft = {"rust", "toml"},
+    opts = function ()
+      return require("custom.configs.crates")
+    end,
     config = function (_, opts)
       require("core.utils").load_mappings("crates")
       local crates = require("crates")
