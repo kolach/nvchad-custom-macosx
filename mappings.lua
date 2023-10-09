@@ -11,6 +11,18 @@ M.dap = {
       "<cmd> DapContinue <CR>",
       "Run or continue the debugger"
     },
+    ["<leader>duc"] = {
+      function ()
+        require("dapui").close()
+      end,
+      "Close debugger UI"
+    },
+    ["<leader>duo"] = {
+      function ()
+        require("dapui").open()
+      end,
+      "Open debuger UI"
+    },
   }
 }
 

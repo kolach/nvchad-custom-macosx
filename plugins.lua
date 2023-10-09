@@ -13,8 +13,10 @@ local plugins = {
         "js-debug-adapter",
         "typescript-language-server",
         "prettier",
+        "clangd",
+        "clang-format",
       }
-}
+    }
   },
   {
     "neovim/nvim-lspconfig",
@@ -85,6 +87,7 @@ local plugins = {
   -- End of: To manage Rust crates
   {
     "jose-elias-alvarez/null-ls.nvim",
+    event = "VeryLazy",
     ft = {"go"},
     opts = function ()
       return require("custom.configs.null-ls")
@@ -138,6 +141,17 @@ local plugins = {
       })
     end
   },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "mfussenegger/nvim-dap",
+    },
+    opts = {
+      handlers = {},
+    },
+  }
 }
 
 return plugins
