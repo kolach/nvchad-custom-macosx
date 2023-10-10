@@ -151,6 +151,10 @@ local plugins = {
     opts = {
       handlers = {},
     },
+  },
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
   }
 }
 
