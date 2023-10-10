@@ -15,6 +15,11 @@ local plugins = {
         "prettier",
         "clangd",
         "clang-format",
+        "pyright",
+        "mypy",
+        "ruff",
+        "black",
+        "debugpy",
       }
     }
   },
@@ -147,6 +152,7 @@ local plugins = {
     dependencies = {
       "williamboman/mason.nvim",
       "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui",
     },
     opts = {
       handlers = {},
@@ -155,6 +161,19 @@ local plugins = {
   {
     "christoomey/vim-tmux-navigator",
     lazy = false,
+  },
+  {
+    "mfussenegger/nvim-dap-python",
+    ft = "python",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui",
+    },
+    config = function (_, _)
+      local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+      require("dap-python").setup(path)
+      require("core.utils").load_mappings("dap_python")
+    end,
   }
 }
 

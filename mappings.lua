@@ -35,6 +35,18 @@ M.dap = {
   }
 }
 
+
+M.dap_python = {
+  plugin = true,
+  n = {
+    ["<leader>dpr"] = {
+      function ()
+        require("dap-python").test_method()
+      end
+    },
+  }
+}
+
 M.dap_go = {
   plugin = true,
   n = {
