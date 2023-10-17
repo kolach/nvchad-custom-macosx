@@ -42,7 +42,8 @@ M.dap_python = {
     ["<leader>dpr"] = {
       function ()
         require("dap-python").test_method()
-      end
+      end,
+      "Debug python test"
     },
   }
 }

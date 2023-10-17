@@ -24,6 +24,20 @@ local plugins = {
     }
   },
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "rust",
+        "cpp",
+        "go",
+        "typescript",
+        "javascript",
+        "python",
+        "markdown",
+      },
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
     config = function ()
       require "plugins.configs.lspconfig"
@@ -141,8 +155,9 @@ local plugins = {
       "nvim-telescope/telescope.nvim",
     },
     config = function ()
+      -- require("chatgpt").setup()
       require("chatgpt").setup({
-        api_key_cmd = "op read op://Private/gpt_api_key_nvim/credential",
+        api_key_cmd = "op read op://Private/gpt_api_key_nvim/credential --no-newline",
       })
     end
   },
@@ -174,7 +189,35 @@ local plugins = {
       require("dap-python").setup(path)
       require("core.utils").load_mappings("dap_python")
     end,
-  }
+  },
+  {
+    "m4xshen/hardtime.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+    },
+    opts = {
+      restricted_keys = {
+        -- remove Enter from restricted keys to make
+        -- wildfire work
+        ["<CR>"] = {},
+      },
+    },
+    config = function (_, opts)
+      require("hardtime").setup(opts)
+    end,
+  },
+  {
+    "sustech-data/wildfire.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function (_, _)
+      require("wildfire").setup()
+    end,
+  },
 }
 
 return plugins
