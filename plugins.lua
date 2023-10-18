@@ -198,6 +198,7 @@ local plugins = {
       "nvim-lua/plenary.nvim",
     },
     opts = {
+      disable_mouse = false,
       restricted_keys = {
         -- remove Enter from restricted keys to make
         -- wildfire work
@@ -218,6 +219,21 @@ local plugins = {
       require("wildfire").setup()
     end,
   },
+  {
+    "abecodes/tabout.nvim",
+    event = "VeryLazy",
+    config = function (_, _)
+      require("tabout").setup()
+    end,
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup()
+    end
+  }
 }
 
 return plugins
