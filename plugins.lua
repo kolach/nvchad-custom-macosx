@@ -222,6 +222,11 @@ local plugins = {
   {
     "abecodes/tabout.nvim",
     event = "VeryLazy",
+    branch = "feature/tabout-md",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "hrsh7th/nvim-cmp",
+    },
     config = function (_, _)
       require("tabout").setup()
     end,
@@ -233,7 +238,30 @@ local plugins = {
     config = function()
       require("nvim-surround").setup()
     end
-  }
+  },
+  {
+    "roobert/tabtree.nvim",
+    event = "VeryLazy",
+    ft = {"rust"},
+    opts = {
+      language_configs = {
+        rust = {
+          target_query = [[
+            (struct_item) @struct_item_capture
+            (impl_item) @impl_item_capture
+            (function_item) @function_item_capture
+          ]],
+          -- experimental feature, to move the cursor in certain situations like when handling python f-strings
+          offsets = {
+            string_start_capture = 1,
+          },
+        },
+      },
+    },
+    config = function(_, opts)
+      require("tabtree").setup(opts)
+    end,
+  },
 }
 
 return plugins
