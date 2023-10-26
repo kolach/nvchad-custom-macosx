@@ -20,6 +20,7 @@ local plugins = {
         "ruff",
         "black",
         "debugpy",
+        "solidity-ls",
       }
     }
   },
