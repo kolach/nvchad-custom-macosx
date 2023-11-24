@@ -21,6 +21,7 @@ local plugins = {
         "black",
         "debugpy",
         "ruby-lsp",
+        "solidity-ls",
       }
     }
   },

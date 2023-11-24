@@ -49,3 +49,10 @@ lspconfig.ruby_ls.setup {
   capabilities = capabilities,
   filetypes = { "ruby" },
 }
+
+lspconfig.solidity.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "solidity" },
+  root_dir = util.find_git_ancestor,
+}
