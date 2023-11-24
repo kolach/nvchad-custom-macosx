@@ -43,3 +43,9 @@ lspconfig.tsserver.setup {
     }
   }
 }
+
+lspconfig.ruby_ls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "ruby" },
+}
