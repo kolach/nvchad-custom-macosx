@@ -20,6 +20,7 @@ local plugins = {
         "ruff",
         "black",
         "debugpy",
+        "ruby-lsp",
         "solidity-ls",
       }
     }
@@ -194,6 +195,7 @@ local plugins = {
   {
     "m4xshen/hardtime.nvim",
     event = "VeryLazy",
+    enabled = false,
     dependencies = {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
