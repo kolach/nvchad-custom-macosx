@@ -2,6 +2,7 @@ local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 local lspconfig = require("lspconfig")
 local util = require("lspconfig/util")
+local ih = require("inlay-hints")
 
 lspconfig.clangd.setup {
   on_attach = function (client, bufnr)
@@ -18,7 +19,11 @@ lspconfig.pyright.setup {
 }
 
 lspconfig.gopls.setup {
-  on_attach = on_attach,
+  -- on_attach = on_attach,
+  on_attach = function (client, bufnr)
+    on_attach(client, bufnr)
+    ih.on_attach(client, bufnr)
+  end,
   capabilities = capabilities,
   cmd = {"gopls"},
   filetypes = {"go", "gomod", "gowork", "gotmpl"},
@@ -29,6 +34,17 @@ lspconfig.gopls.setup {
       usePlaceholders = true,
       analyses = {
         unusedparams = true,
+      },
+      staticcheck = true,
+      semanticTokens = true,
+      hints = {
+        assignVariableTypes = true,
+        compositeLiteralFields = true,
+        compositeLiteralTypes = true,
+        constantValues = true,
+        functionTypeParameters = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
       },
     }
   },
