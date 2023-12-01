@@ -1,11 +1,26 @@
 local M = {}
 
-M.general = {
+-- M.tmux_nav = {
+--   n = {
+--     ["<C-h>"] = { "<cmd> TmuxNavigateLeft<CR>", "window left"},
+--     ["<C-l>"] = { "<cmd> TmuxNavigateRight<CR>", "window right"},
+--     ["<C-j>"] = { "<cmd> TmuxNavigateDown<CR>", "window down"},
+--     ["<C-k>"] = { "<cmd> TmuxNavigateUp<CR>", "window up"},
+--   },
+-- }
+
+M.move_lines = {
   n = {
-    ["<C-h>"] = { "<cmd> TmuxNavigateLeft<CR>", "window left"},
-    ["<C-l>"] = { "<cmd> TmuxNavigateRight<CR>", "window right"},
-    ["<C-j>"] = { "<cmd> TmuxNavigateDown<CR>", "window down"},
-    ["<C-k>"] = { "<cmd> TmuxNavigateUp<CR>", "window up"},
+    ["<C-j>"] = { ":m .+1<CR>==", "move line down"},
+    ["<C-k>"] = { ":m .-2<CR>==", "move line up"},
+  },
+  i = {
+    ["<C-j>"] = { "<Esc>:m .+1<CR>==gi", "move line down"},
+    ["<C-k>"] = { "<Esc>:m .-2<CR>==gi", "move line up"},
+  },
+  v = {
+    ["<C-j>"] = { ":m '>+1<CR>gv=gv", "move block down"},
+    ["<C-k>"] = { ":m '<-2<CR>gv=gv", "move block up"},
   }
 }
 
