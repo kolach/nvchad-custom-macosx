@@ -15,5 +15,6 @@ M.plugins = 'custom.plugins'
 M.mappings = require "custom.mappings"
 
 vim.opt.relativenumber = true
+vim.opt.guifont = "JetBrainsMono Nerd Font:h17"
 
 return M
