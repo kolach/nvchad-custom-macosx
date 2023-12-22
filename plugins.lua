@@ -98,10 +98,26 @@ local plugins = {
     end
   },
   {
+    "zbirenbaum/copilot.lua",
+    event = "InsertEnter",
+    opts = function ()
+      return require("custom.configs.copilot")
+    end,
+  },
+  {
     "hrsh7th/nvim-cmp",
+    dependencies = {
+      {
+        "zbirenbaum/copilot-cmp",
+        config = function()
+          require("copilot_cmp").setup()
+        end,
+      },
+    },
     opts = function ()
       local M = require "plugins.configs.cmp"
       table.insert(M.sources, {name = "crates"})
+      table.insert(M.sources, {name = "copilot", group_index = 2})
       return M
     end
   },
