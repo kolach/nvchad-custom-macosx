@@ -131,6 +131,30 @@ M.crates = {
   }
 }
 
+M.rust = {
+  plugin = true,
+  n = {
+    ["<leader>ca"] = {
+      function()
+        vim.cmd.RustLsp("codeAction")
+      end,
+      "LSP code Action"
+    },
+    ["<leader>dr"] = {
+      function()
+        vim.cmd.RustLsp("debuggables")
+      end,
+      "Rust debuggables"
+    },
+    ["<leader>ra"] = {
+      function()
+        vim.lsp.buf.rename()
+      end,
+      "LSP rename"
+    },
+  }
+}
+
 M.gopher = {
   plugin = true,
   n = {
