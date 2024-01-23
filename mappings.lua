@@ -131,6 +131,25 @@ M.crates = {
   }
 }
 
+
+M.go = {
+  plugin = true,
+  n = {
+    ["<leader>ca"] = {
+      function()
+        vim.cmd.RustLsp("codeAction")
+      end,
+      "LSP code Action"
+    },
+    ["<leader>ra"] = {
+      function()
+        vim.lsp.buf.rename()
+      end,
+      "LSP rename"
+    },
+  }
+}
+
 M.rust = {
   plugin = true,
   n = {
