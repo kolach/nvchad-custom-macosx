@@ -7,6 +7,12 @@ local ih = require("inlay-hints")
 lspconfig.clangd.setup {
   on_attach = function (client, bufnr)
     client.server_capabilities.signatureHelpProvider = false
+    if client.server_capabilities.inlayHintProvider then
+      vim.g.inlay_hints_visible = true
+      vim.lsp.inlay_hint(bufnr, true)
+    else
+      print("no inlay hints available")
+    end
     on_attach(client, bufnr)
   end,
   capabilities = capabilities,
@@ -16,6 +22,15 @@ lspconfig.pyright.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "python" },
+}
+
+-- 0.10 should support inlay hints by default (see line 11..13) but for some reason it doesn't work
+-- the code bellow enables them using inlay-hints plugin
+lspconfig.rust_analyzer.setup {
+  on_attach = function (client, bufnr)
+    on_attach(client, bufnr)
+    ih.on_attach(client, bufnr)
+  end,
 }
 
 lspconfig.gopls.setup {

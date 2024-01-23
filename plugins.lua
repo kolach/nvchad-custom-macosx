@@ -54,15 +54,29 @@ local plugins = {
       vim.g.rustfmt_autosave = 1
     end
   },
+  -- Archived. Using rustaceanvim instead.
+  -- https://github.com/mrcjkb/rustaceanvim/discussions/122
+  -- {
+  --   "simrat39/rust-tools.nvim",
+  --   ft = "rust",
+  --   dependencies = "neovim/nvim-lspconfig",
+  --   opts = function ()
+  --     return require "custom.configs.rust-tools"
+  --   end,
+  --   config = function (_, opts)
+  --     require("rust-tools").setup(opts)
+  --   end
+  -- },
   {
-    "simrat39/rust-tools.nvim",
+    "mrcjkb/rustaceanvim",
+    version = "^3", -- Recommended
     ft = "rust",
-    dependencies = "neovim/nvim-lspconfig",
     opts = function ()
-      return require "custom.configs.rust-tools"
+      return require("custom.configs.rustaceanvim")
     end,
-    config = function (_, opts)
-      require("rust-tools").setup(opts)
+    config = function(_, opts)
+      vim.g.rustaceanvim = vim.tbl_deep_extend("force", {}, opts or {})
+      require("core.utils").load_mappings("rust")
     end
   },
   {
@@ -144,6 +158,7 @@ local plugins = {
     ft = "go",
     config = function (_, opts)
       require("gopher").setup(opts)
+      require("core.utils").load_mappings("go")
       require("core.utils").load_mappings("gopher")
     end,
     build = function ()
