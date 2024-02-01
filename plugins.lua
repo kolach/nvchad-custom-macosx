@@ -54,27 +54,14 @@ local plugins = {
       vim.g.rustfmt_autosave = 1
     end
   },
-  -- Archived. Using rustaceanvim instead.
-  -- https://github.com/mrcjkb/rustaceanvim/discussions/122
-  -- {
-  --   "simrat39/rust-tools.nvim",
-  --   ft = "rust",
-  --   dependencies = "neovim/nvim-lspconfig",
-  --   opts = function ()
-  --     return require "custom.configs.rust-tools"
-  --   end,
-  --   config = function (_, opts)
-  --     require("rust-tools").setup(opts)
-  --   end
-  -- },
   {
     "mrcjkb/rustaceanvim",
-    version = "^3", -- Recommended
+    version = "^4", -- Recommended
     ft = "rust",
     opts = function ()
       return require("custom.configs.rustaceanvim")
     end,
-    config = function(_, opts)
+    config = function(bufnr, opts)
       vim.g.rustaceanvim = vim.tbl_deep_extend("force", {}, opts or {})
       require("core.utils").load_mappings("rust")
     end
@@ -296,14 +283,6 @@ local plugins = {
       require("tabtree").setup(opts)
     end,
   },
-  {
-{
-      "simrat39/inlay-hints.nvim",
-      config = function()
-        require("inlay-hints").setup()
-      end,
-    },
-  }
 }
 
 return plugins
