@@ -9,7 +9,10 @@ M.ui = {
   },
   tabufline = {
     lazyload = false,
-  }
+  },
+  statusline = {
+    separator_style = "block",
+  },
 }
 M.plugins = 'custom.plugins'
 M.mappings = require "custom.mappings"
