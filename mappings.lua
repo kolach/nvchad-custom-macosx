@@ -9,6 +9,32 @@ local M = {}
 --   },
 -- }
 
+-- Global variable to track the state of inlay hints
+vim.g.inlay_hints_enabled = vim.g.inlay_hints_enabled or false
+
+function ToggleInlayHints()
+    if vim.g.inlay_hints_enabled then
+        -- Disable inlay hints
+        vim.lsp.inlay_hint.enable(0, false)
+        vim.g.inlay_hints_enabled = false
+    else
+        -- Enable inlay hints
+        vim.lsp.inlay_hint.enable(0, true)
+        vim.g.inlay_hints_enabled = true
+    end
+end
+
+M.hints = {
+  n = {
+    ["<leader>ci"] = {
+      function()
+        ToggleInlayHints()
+      end,
+      "Toggle inlay hints"
+    },
+  },
+}
+
 M.move_lines = {
   n = {
     ["<C-j>"] = { ":m .+1<CR>==", "move line down"},

@@ -2,7 +2,6 @@ local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 local lspconfig = require("lspconfig")
 local util = require("lspconfig/util")
-local ih = require("inlay-hints")
 
 lspconfig.clangd.setup {
   on_attach = function (client, bufnr)
@@ -24,20 +23,24 @@ lspconfig.pyright.setup {
   filetypes = { "python" },
 }
 
--- 0.10 should support inlay hints by default (see line 11..13) but for some reason it doesn't work
--- the code bellow enables them using inlay-hints plugin
-lspconfig.rust_analyzer.setup {
-  on_attach = function (client, bufnr)
-    on_attach(client, bufnr)
-    ih.on_attach(client, bufnr)
-  end,
+-- YAML language server setup
+lspconfig.yamlls.setup {
+  capabilities = capabilities,
+  settings = {
+    yaml = {
+      schemas = {
+        -- ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+        -- Add other schemas here
+        -- ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json"] = "*.yaml",
+        -- ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*.yaml",
+      },
+    },
+  },
 }
 
 lspconfig.gopls.setup {
-  -- on_attach = on_attach,
   on_attach = function (client, bufnr)
     on_attach(client, bufnr)
-    ih.on_attach(client, bufnr)
   end,
   capabilities = capabilities,
   cmd = {"gopls"},
