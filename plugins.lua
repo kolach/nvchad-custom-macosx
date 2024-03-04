@@ -22,6 +22,7 @@ local plugins = {
         "debugpy",
         "ruby-lsp",
         "solidity-ls",
+        "yaml-language-server",
       }
     }
   },

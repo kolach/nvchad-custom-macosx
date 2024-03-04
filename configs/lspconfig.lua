@@ -23,6 +23,21 @@ lspconfig.pyright.setup {
   filetypes = { "python" },
 }
 
+-- YAML language server setup
+lspconfig.yamlls.setup {
+  capabilities = capabilities,
+  settings = {
+    yaml = {
+      schemas = {
+        -- ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+        -- Add other schemas here
+        -- ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json"] = "*.yaml",
+        -- ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*.yaml",
+      },
+    },
+  },
+}
+
 lspconfig.gopls.setup {
   on_attach = function (client, bufnr)
     on_attach(client, bufnr)
